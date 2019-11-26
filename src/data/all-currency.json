@@ -1,0 +1,14 @@
+[
+  {
+    "divisa": "dolar",
+    "symbol": "USD",
+    "compra": 0,
+    "venta": 0
+  },
+  {
+    "divisa": "euro",
+    "symbol": "EUR",
+    "compra": 0,
+    "venta": 0
+  }
+]
