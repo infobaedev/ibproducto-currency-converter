@@ -21,7 +21,7 @@ function ConverterWrapper() {
   const [quotedCurrencyAmount, setQuotedCurrencyAmount] = useState(1);
 
   const BASE_CURRENCY_INIT = "USDARS";
-  const QUOTED_CURRENCY_INIT = "DLRSUPV";
+  const QUOTED_CURRENCY_INIT = "DLRBILL";
   let updatedCalculation;
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function ConverterWrapper() {
     fetchData();
   }, []);
 
-
+  console.log(`Errores: ${JSON.stringify(hasError)}`);
 
   function matchInitValues(currencyArray, initValue) {
     return currencyArray.length > 0
@@ -51,34 +51,31 @@ function ConverterWrapper() {
   }
 
   /* Lista de divisas base */
-  const baseCurrencysList = currency.filter(
+  /* const baseCurrencysList = currency.filter(
     i => i.quotedCurrency === "ARS" || i.quotedCurrency === "USD"
-  );
+  ); */
+
   const quotedCurrencysList = currency.filter(
     i => i.baseCurrency === baseCurrency.quotedCurrency
   );
 
   /* EVENTO filtrar opcion de divisa base */
-  function handleChangeBaseCurrency(event) {
-    console.log("Filter base currency")
+  /* function handleChangeBaseCurrency(event) {
+    console.log("Filter base currency");
     setBaseCurrency(currency.find(coin => coin.symbol === event.target.value));
-    /*setQuotedCurrency(currency.filter(
-      i => i.baseCurrency === baseCurrency.quotedCurrency
-    )[0])*/
-  }
+  } */
 
   /* EVENTO filtrar opcion de divisa contraparte */
   function handleChangeQuotedCurrency(event) {
-    console.log("Filter quoted currency");
     setQuotedCurrency(
       currency.find(coin => coin.symbol === event.target.value)
     );
   }
 
   /* EVENTO CAMBIO importe divisa contraparte */
-  function handleChangeAmount(event) {
-    let amount = event.target.value;
-    setQuotedCurrencyAmount(amount);
+  function handleChangeAmount(values) {
+    /* const {value} = values; */
+    setQuotedCurrencyAmount(values.floatValue);
   }
 
   /* actualizacion monto a operar */
@@ -88,9 +85,7 @@ function ConverterWrapper() {
 
     const pairCalculation = quotedCurrencyAmount * operation;
 
-    updatedCalculation = pairCalculation/* .toFixed(2) */;
-
-    console.log(updatedCalculation, typeOperation);
+    updatedCalculation = isNaN(pairCalculation) ? "-" : pairCalculation;
   }
 
   calculationUpdater(typeOperation);
@@ -102,11 +97,15 @@ function ConverterWrapper() {
   return (
     <div className="widget-wrapper">
       <div className="widget-selects">
-        <WidgetSelect
+        {/* <WidgetSelect
           currency={baseCurrencysList}
           onChange={handleChangeBaseCurrency}
           selectedCurrency={baseCurrency}
-        />
+        /> */}
+
+        <div className="widget-select">
+          <span className="disabled-option">{`${baseCurrency.quotedCurrencyName} a:`}</span>
+        </div>
 
         <WidgetSelect
           currency={quotedCurrencysList}
@@ -115,107 +114,98 @@ function ConverterWrapper() {
         />
       </div>
 
-      <div className="widget-type-operation">
-        <button
-          className={`type-operation-button ${
-            typeOperation === "compra" ? "active" : ""
-          }`}
-          onClick={() => setTypeOperation("compra")}
-        >
-          Comprar {baseCurrency && baseCurrency.divisa}
-        </button>
+      <div className="background-wrapper">
+        <div className="widget-type-operation">
+          <button
+            className={`type-operation-button ${
+              typeOperation === "compra" ? "active" : ""
+            }`}
+            onClick={() => setTypeOperation("compra")}
+          >
+            Comprar {baseCurrency && baseCurrency.divisa}
+          </button>
 
-        <button
-          className={`type-operation-button ${
-            typeOperation === "venta" ? "active" : ""
-          }`}
-          onClick={() => setTypeOperation("venta")}
-        >
-          Vender {baseCurrency && baseCurrency.divisa}
-        </button>
-      </div>
+          <button
+            className={`type-operation-button ${
+              typeOperation === "venta" ? "active" : ""
+            }`}
+            onClick={() => setTypeOperation("venta")}
+          >
+            Vender {baseCurrency && baseCurrency.divisa}
+          </button>
+        </div>
 
-      <div className="widget-display">
-        <WidgetDisplay val={{ baseCurrency, quotedCurrency }} />
-      </div>
-
-      <div className="widget-inputs">
-        <div className="input-group">
-          <label className="input-label">{`${quotedCurrency.quotedCurrencyName} a comprar`}</label>
-          {/* <input
-            className="input"
-            type="number"
-            name="quotedCurrencyAmount"
-            value={quotedCurrencyAmount}
-            onChange={handleChangeAmount}
-          /> */}
-
-          <NumberFormat
-            className="input"
-            value={quotedCurrencyAmount}
-            onChange={handleChangeAmount}
-            displayType={"input"}
-            thousandSeparator={"."}
-            decimalSeparator={","}
-            fixedDecimalScale={true}
+        <div className="widget-display">
+          <WidgetDisplay
+            val={{ baseCurrency, quotedCurrency, typeOperation }}
           />
         </div>
 
-        <div className="input-group">
-          <label className="input-label disabled">{`${baseCurrency.quotedCurrencyName} a pagar`}</label>
-          {/* <input
-            className="input disabled"
-            type="number"
-            name="base"
-            value={updatedCalculation}
-            disabled
-          /> */}
-
-          <NumberFormat
-            className="input disabled"
-            value={updatedCalculation}
-            displayType={"input"}
-            thousandSeparator={"."}
-            decimalSeparator={","}
-            fixedDecimalScale={true}
-            decimalScale={2}
-            disabled
-          />
-        </div>
-      </div>
-
-      <div className="widget-resume">
-        <span className="resume-message">
-          <span>
-            Para comprar{" "}
+        <div className="widget-inputs">
+          <div className="input-group">
+            <label className="input-label">{`${
+              quotedCurrency.quotedCurrencyName
+            } a ${typeOperation === "compra" ? "comprar" : "vender"}`}</label>
             <NumberFormat
+              className="input"
               value={quotedCurrencyAmount}
-              displayType={"text"}
+              onValueChange={handleChangeAmount}
+              displayType={"input"}
               thousandSeparator={"."}
               decimalSeparator={","}
-              decimalScale={2}
-              fixedDecimalScale={true}
-              suffix={` ${quotedCurrency.quotedCurrency}`}
-              className="prominent"
-            />{" "}
-            se necesitan{" "}
-            <NumberFormat
-              value={updatedCalculation}
-              displayType={"text"}
-              thousandSeparator={"."}
-              decimalSeparator={","}
-              decimalScale={2}
-              fixedDecimalScale={true}
-              suffix={` ${baseCurrency.quotedCurrency}`}
-              className="prominent"
+              maxLength="12"
             />
+          </div>
+
+          <div className="input-group">
+            <label className="input-label disabled">{`${
+              baseCurrency.quotedCurrencyName
+            } a  ${typeOperation === "compra" ? "pagar" : "obtener"}`}</label>
+            <NumberFormat
+              className="input disabled"
+              value={updatedCalculation}
+              displayType={"input"}
+              thousandSeparator={"."}
+              decimalSeparator={","}
+              decimalScale={2}
+              disabled
+            />
+          </div>
+        </div>
+
+        <div className="widget-resume">
+          <span className="resume-message">
+
+            
+              <span>
+              {typeOperation === 'compra' ? 'Para comprar' : 'Vendiendo'}{" "}
+              <NumberFormat
+                className="prominent"
+                value={quotedCurrencyAmount}
+                displayType={"text"}
+                suffix={` ${quotedCurrency.quotedCurrency}`}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                decimalScale={2}
+              />{" "}
+              {typeOperation === 'compra' ? 'se necesitan' : 'se obtienen'}{" "}
+              <NumberFormat
+                className="prominent"
+                value={updatedCalculation}
+                displayType={"text"}
+                suffix={` ${baseCurrency.quotedCurrency}`}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                decimalScale={2}
+              />
+            </span>
           </span>
-        </span>
+        </div>
       </div>
 
-      <div className="widget-success">
+      {/* <div className="widget-success">
         <span>Hay Errores: {JSON.stringify(hasError)}</span>
-      </div>
+      </div> */}
     </div>
   );
 }

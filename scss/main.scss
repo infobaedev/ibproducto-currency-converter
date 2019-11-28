@@ -4,7 +4,7 @@ $bold-color: #333;
 * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  
+
   &:focus {
     outline: none;
   }
@@ -30,22 +30,17 @@ $bold-color: #333;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 12px 10px;
-
-    /* background: #fcfcfc 0% 0% no-repeat padding-box;
-    border: 1px solid #f2e0ce;
-    border-radius: 2px; */
-
-    > div {
-      margin-top: 12px;
-    }
+    /* padding: 12px 10px; */
 
     /* widget selects */
+
     .widget-selects {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: center;
       width: 100%;
+      margin-bottom: 12px;
 
       .widget-select {
         width: 100%;
@@ -58,9 +53,28 @@ $bold-color: #333;
           border-radius: 2px;
           background: #ffffff 0% 0% no-repeat padding-box;
         }
+
+        .disabled-option {
+            display: block;
+            text-align: center;
+            font-weight: normal;
+            font-size: 12px;
+        }
+
         &:last-of-type {
           margin-left: 12px;
         }
+      }
+    }
+
+    .background-wrapper {
+      background: #fcfcfc 0% 0% no-repeat padding-box;
+      border: 1px solid #f2e0ce;
+      border-radius: 2px;
+      padding: 12px 10px;
+
+      > div {
+        margin-top: 12px;
       }
     }
 
@@ -136,12 +150,11 @@ $bold-color: #333;
         width: 100%;
 
         .input-label {
-            display: block;
+          display: block;
           font-size: 12px;
           margin-bottom: 4px;
 
           &.disabled {
-            
             text-align: center;
           }
         }
@@ -184,9 +197,13 @@ $bold-color: #333;
         color: #000000;
 
         .prominent {
-            font-weight: bold;
+          font-weight: bold;
         }
       }
+    }
+
+    .widget-success {
+        margin: 12px;
     }
   }
   /* fin widget wrapper */
