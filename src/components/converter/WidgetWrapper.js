@@ -27,7 +27,7 @@ function ConverterWrapper() {
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        "http://10.0.100.91:8094/api/divisas/cotizaciones"
+        "https://dlj9yugrk8euh.cloudfront.net/api/divisas/cotizaciones/"
       );
       res
         .json()
@@ -42,7 +42,7 @@ function ConverterWrapper() {
     fetchData();
   }, []);
 
-  console.log(`Errores: ${JSON.stringify(hasError)}`);
+  console.log(`Errors: ${JSON.stringify(hasError)}`);
 
   function matchInitValues(currencyArray, initValue) {
     return currencyArray.length > 0
