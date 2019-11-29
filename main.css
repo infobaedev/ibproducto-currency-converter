@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+  *:focus {
+    outline: none; }
+
+.widget-converter {
+  color: #777;
+  display: block;
+  background-color: #fff;
+  padding: 18px 20px;
+  max-width: 420px; }
+  .widget-converter .widget-title {
+    font-size: 12px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 28px; }
+  .widget-converter .widget-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    /* padding: 12px 10px; */ }
+    .widget-converter .widget-wrapper .widget-selects {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 12px; }
+      .widget-converter .widget-wrapper .widget-selects .widget-select {
+        width: 100%; }
+        .widget-converter .widget-wrapper .widget-selects .widget-select select {
+          color: #777;
+          width: 100%;
+          padding: 6px;
+          border: 1px solid #e8e8e8;
+          border-radius: 2px;
+          background: #ffffff 0% 0% no-repeat padding-box; }
+        .widget-converter .widget-wrapper .widget-selects .widget-select .disabled-option {
+          display: block;
+          text-align: center;
+          font-weight: normal;
+          font-size: 12px; }
+        .widget-converter .widget-wrapper .widget-selects .widget-select:last-of-type {
+          margin-left: 12px; }
+    .widget-converter .widget-wrapper .background-wrapper {
+      background: #fcfcfc 0% 0% no-repeat padding-box;
+      border: 1px solid #f2e0ce;
+      border-radius: 2px;
+      padding: 12px 10px;
+      width: 100%; }
+      .widget-converter .widget-wrapper .background-wrapper > div {
+        margin-top: 12px; }
+    .widget-converter .widget-wrapper .widget-type-operation {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%; }
+      .widget-converter .widget-wrapper .widget-type-operation .type-operation-button {
+        color: #777;
+        text-align: center;
+        width: 100%;
+        padding: 6px 12px;
+        border-radius: 2px;
+        background: #fcfcfc 0% 0% no-repeat padding-box;
+        border: 1px solid #f4e6d9; }
+        .widget-converter .widget-wrapper .widget-type-operation .type-operation-button.active {
+          color: #333;
+          font-weight: bold;
+          background: #FFF2E7 0% 0% no-repeat padding-box;
+          border: 1px solid #f4e6d9; }
+        .widget-converter .widget-wrapper .widget-type-operation .type-operation-button:focus {
+          outline: none; }
+        .widget-converter .widget-wrapper .widget-type-operation .type-operation-button:last-of-type {
+          margin-left: 12px; }
+    .widget-converter .widget-wrapper .widget-display {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      width: 100%;
+      border: 1px solid #e8e8e8;
+      border-radius: 2px;
+      padding: 6px;
+      text-align: center;
+      font-size: 12px; }
+      .widget-converter .widget-wrapper .widget-display .display-peers {
+        font-weight: bold;
+        letter-spacing: 0;
+        color: #333; }
+      .widget-converter .widget-wrapper .widget-display .display-quoted-prices {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        padding: 6px 0; }
+      .widget-converter .widget-wrapper .widget-display .display-quoted-date {
+        padding-top: 6px; }
+    .widget-converter .widget-wrapper .widget-inputs {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%; }
+      .widget-converter .widget-wrapper .widget-inputs .input-group {
+        width: 100%; }
+        .widget-converter .widget-wrapper .widget-inputs .input-group .input-label {
+          display: block;
+          font-size: 12px;
+          margin-bottom: 4px; }
+          .widget-converter .widget-wrapper .widget-inputs .input-group .input-label.disabled {
+            text-align: center; }
+        .widget-converter .widget-wrapper .widget-inputs .input-group .input {
+          color: #777;
+          width: 100%;
+          padding: 8px 6px;
+          margin-top: 4px;
+          background: #ffffff 0% 0% no-repeat padding-box;
+          border: 1px solid #e8e8e8;
+          border-radius: 2px; }
+          .widget-converter .widget-wrapper .widget-inputs .input-group .input.disabled {
+            color: #deb187;
+            font-weight: bold;
+            text-align: center;
+            background: #fcfcfc 0% 0% no-repeat padding-box;
+            border-color: #fcfcfc; }
+        .widget-converter .widget-wrapper .widget-inputs .input-group:last-of-type {
+          margin-left: 12px; }
+    .widget-converter .widget-wrapper .widget-resume {
+      display: block;
+      width: 100%; }
+      .widget-converter .widget-wrapper .widget-resume .resume-message {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 12px;
+        letter-spacing: 0;
+        color: #000000; }
+        .widget-converter .widget-wrapper .widget-resume .resume-message .prominent {
+          font-weight: bold; }
+    .widget-converter .widget-wrapper .widget-success {
+      margin: 12px; }

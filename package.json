@@ -13,8 +13,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "deploy": "aws s3 sync build/ s3://widget-conversor.economico.infobae.com --acl public-read",
     "sass": "node-sass -w ./scss -o ./src/css/",
-    "deploy": "aws s3 sync build/ s3://widget-conversor.economico.infobae.com --acl public-read"
+    "c": "node-sass ./scss -o .|postcss ./src/css/ -u autoprefixer -r",
+    "w":"watch 'npm run c' ./scss"
+    
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +35,9 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.13.0"
+    "autoprefixer": "^9.7.2",
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.13.0",
+    "postcss-cli": "^6.1.3"
   }
 }

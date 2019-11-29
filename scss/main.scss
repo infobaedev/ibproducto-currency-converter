@@ -24,17 +24,15 @@ $bold-color: #333;
     margin-bottom: 28px;
   }
 
-  /* widget wrapper */
   .widget-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
     align-items: center;
     /* padding: 12px 10px; */
 
-    /* widget selects */
-
-    .widget-selects {
+     .widget-selects {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -72,13 +70,13 @@ $bold-color: #333;
       border: 1px solid #f2e0ce;
       border-radius: 2px;
       padding: 12px 10px;
+      width: 100%;
 
       > div {
         margin-top: 12px;
       }
     }
 
-    /* widget type operation */
     .widget-type-operation {
       display: flex;
       flex-direction: row;
@@ -97,7 +95,7 @@ $bold-color: #333;
         &.active {
           color: $bold-color;
           font-weight: bold;
-          background: #fff2e7 0% 0% no-repeat padding-box;
+          background: #FFF2E7 0% 0% no-repeat padding-box;
           border: 1px solid #f4e6d9;
         }
 
@@ -111,7 +109,7 @@ $bold-color: #333;
       }
     }
 
-    /* widget display */
+    
     .widget-display {
       background: #ffffff 0% 0% no-repeat padding-box;
       width: 100%;
@@ -206,5 +204,4 @@ $bold-color: #333;
         margin: 12px;
     }
   }
-  /* fin widget wrapper */
 }
