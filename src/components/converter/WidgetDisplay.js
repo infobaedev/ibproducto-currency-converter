@@ -2,10 +2,10 @@ import React from "react";
 import NumberFormat from "react-number-format";
 
 const WidgetDisplay = props => {
-  const { baseCurrency, quotedCurrency, typeOperation } = props.val;
+  const { baseCurrency, quotedCurrency} = props.parity;
+  const parity = props.parity;
 
-  let splitDate =
-    quotedCurrency.date && new Date(quotedCurrency.date.split("+")[0]);
+  let splitDate = parity.date && new Date(parity.date.split("+")[0]);
 
   let newDate = new Date(splitDate);
 
@@ -21,26 +21,24 @@ const WidgetDisplay = props => {
   let formatDate = newDate.toLocaleString([], options);
 
   let quotationOperation =
-    typeOperation === "compra" ? quotedCurrency.sell : quotedCurrency.buy;
+    props.typeOperation === "compra" ? parity.sell : parity.buy;
 
   return (
     <>
       <div className="display-peers">
         <NumberFormat
-          className=""
           value={`1 ${baseCurrency}`}
           displayType={"text"}
-          suffix={` ${quotedCurrency.quotedCurrency}`}
+          suffix={` ${parity.quotedCurrency}`}
           thousandSeparator={"."}
           decimalSeparator={","}
           decimalScale={2}
         />
         {` = `}
         <NumberFormat
-          className=""
           value={quotationOperation}
           displayType={"text"}
-          suffix={` ${baseCurrency.quotedCurrency}`}
+          suffix={` ${parity.baseCurrency}`}
           thousandSeparator={"."}
           decimalSeparator={","}
           decimalScale={2}

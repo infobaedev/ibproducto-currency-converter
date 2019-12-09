@@ -2,6 +2,7 @@
   "name": "ib-producto-currency-converter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
@@ -16,8 +17,7 @@
     "deploy": "aws s3 sync build/ s3://widget-conversor.economico.infobae.com --acl public-read",
     "sass": "node-sass -w ./scss -o ./src/css/",
     "c": "node-sass ./scss -o .|postcss ./src/css/ -u autoprefixer -r",
-    "w":"watch 'npm run c' ./scss"
-    
+    "w": "watch 'npm run c' ./scss"
   },
   "eslintConfig": {
     "extends": "react-app"

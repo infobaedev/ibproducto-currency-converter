@@ -8,12 +8,12 @@ const Select = props => {
 
   return (
     <div className="widget-select">      
-      <select onChange={handleChange} value={props.selectedCurrency.symbol} >
+      <select onChange={handleChange} value={props.selectedCurrency}>
         
-        {props.currency.map(item => {
+        {props.options.map(item => {
           return (
-            <option key={item.symbol} value={item.symbol}>
-              {item.quotedCurrencyName}
+            <option key={item} value={item}>
+              {item}
             </option>
           );
         })}
