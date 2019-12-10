@@ -12,8 +12,8 @@ const Select = props => {
         
         {props.options.map(item => {
           return (
-            <option key={item} value={item}>
-              {item}
+            <option key={item.currency} value={item.currency}>
+              {item.name}
             </option>
           );
         })}

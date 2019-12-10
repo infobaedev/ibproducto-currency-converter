@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
-
 import WidgetSelect from "./WidgetSelect";
 import WidgetDisplay from "./WidgetDisplay";
 import Loading from "./Loading";
@@ -24,33 +23,49 @@ function ConverterWrapper() {
   }, []);
 
 
-  const baseCurrencys = [
-    ...new Set(currencys.map(currency => currency.baseCurrency))
-  ];
+  const baseCurrencys = createUniqueCurrencyArray(
+    currencys.map(currency =>({ currency: currency.baseCurrency, name: currency.baseCurrencyName}))
+  );
 
-  const quotedCurrencys = [
-    ...new Set(currencys.filter(curr => curr.baseCurrency === baseCurrency).map(currency => currency.quotedCurrency))
-  ];
+
+  const quotedCurrencys = createUniqueCurrencyArray(
+    currencys
+      .filter(curr => curr.baseCurrency === baseCurrency)
+      .map(currency => ({
+        currency: currency.quotedCurrency,
+        name: currency.quotedCurrencyName
+      }))
+  );
 
   let parity = currencys.find(
     currency =>
       currency.baseCurrency === baseCurrency &&
       currency.quotedCurrency === quotedCurrency
-  ) ;
+  );
 
+  //Si no hay paridad, usar el primer indice de los quotedCurrencys
   if(parity === undefined){
     parity = currencys.find(
     currency =>
       currency.baseCurrency === baseCurrency &&
-      currency.quotedCurrency === quotedCurrencys[0]
+      currency.quotedCurrency === quotedCurrencys[0].currency
     );
   }
 
+  function createUniqueCurrencyArray(currencysParam) {
+    let arrayToReturn = [];
+    currencysParam.map(curr =>
+      arrayToReturn.find(bCurr => bCurr.currency === curr.currency) ===
+      undefined
+        ? arrayToReturn.push(curr)
+        : null
+    );
+    return arrayToReturn;
+  }
 
   function calculate(){
     let valueQuotedCurrency =
       typeOperation === "compra" ? parity.sell : parity.buy;
-
     let pairCalculation = quotedCurrencyAmount * valueQuotedCurrency;
     return isNaN(pairCalculation) ? "-" : pairCalculation;
   }
