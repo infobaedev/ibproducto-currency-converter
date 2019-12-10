@@ -1,4 +1,5 @@
 * {
+  font-size: 14px;
   box-sizing: border-box;
   -moz-box-sizing: border-box; }
   *:focus {
@@ -41,8 +42,7 @@
         .widget-converter .widget-wrapper .widget-selects .widget-select .disabled-option {
           display: block;
           text-align: center;
-          font-weight: normal;
-          font-size: 12px; }
+          font-weight: normal; }
         .widget-converter .widget-wrapper .widget-selects .widget-select:last-of-type {
           margin-left: 12px; }
     .widget-converter .widget-wrapper .background-wrapper {
@@ -69,7 +69,7 @@
         .widget-converter .widget-wrapper .widget-type-operation .type-operation-button.active {
           color: #333;
           font-weight: bold;
-          background: #FFF2E7 0% 0% no-repeat padding-box;
+          background: #fff2e7 0% 0% no-repeat padding-box;
           border: 1px solid #f4e6d9; }
         .widget-converter .widget-wrapper .widget-type-operation .type-operation-button:focus {
           outline: none; }
@@ -116,12 +116,13 @@
           background: #ffffff 0% 0% no-repeat padding-box;
           border: 1px solid #e8e8e8;
           border-radius: 2px; }
-          .widget-converter .widget-wrapper .widget-inputs .input-group .input.disabled {
+          .widget-converter .widget-wrapper .widget-inputs .input-group .input.view {
             color: #deb187;
             font-weight: bold;
             text-align: center;
             background: #fcfcfc 0% 0% no-repeat padding-box;
-            border-color: #fcfcfc; }
+            border-color: #fcfcfc;
+            opacity: 1 !important; }
         .widget-converter .widget-wrapper .widget-inputs .input-group:last-of-type {
           margin-left: 12px; }
     .widget-converter .widget-wrapper .widget-resume {

@@ -162,7 +162,7 @@ function ConverterWrapper() {
               baseCurrency.quotedCurrencyName
             } a  ${typeOperation === "compra" ? "pagar" : "obtener"}`}</label>
             <NumberFormat
-              className="input disabled"
+              className="input view"
               value={updatedCalculation}
               displayType={"input"}
               thousandSeparator={"."}
