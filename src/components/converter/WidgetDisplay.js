@@ -48,7 +48,7 @@ const WidgetDisplay = props => {
       </div>
 
       {/* <div className="display-quoted-prices"></div> */}
-
+      <div className="display-tax-info">Incluye el impuesto del 30%</div>
       <div className="display-quoted-date">
         <span>{`Valores del ${
           baseCurrency && quotedCurrency

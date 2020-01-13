@@ -116,12 +116,16 @@ $bold-color: #333;
       border-radius: 2px;
       padding: 6px;
       text-align: center;
-      font-size: 12px;
+      font-size: 12px; 
 
       .display-peers {
         font-weight: bold;
         letter-spacing: 0;
         color: $bold-color;
+      }
+
+      .display-tax-info {
+        font-size: 12px;
       }
 
       .display-quoted-prices {
